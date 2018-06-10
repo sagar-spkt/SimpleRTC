@@ -286,18 +286,14 @@ var CONTROLLER = window.CONTROLLER = function(phone){
 function get_xirsys_servers() {
     var servers;
     $.ajax({
-        type: 'POST',
-        url: 'https://service.xirsys.com/ice',
-        data: {
-            room: 'default',
-            application: 'default',
-            domain: 'kevingleason.me',
-            ident: 'gleasonk',
-            secret: 'b9066b5e-1f75-11e5-866a-c400956a1e19',
-            secure: 1,
+        url: "https://global.xirsys.net/_turn/pubnubClone/",
+        type: "PUT",
+        async: false,
+        headers: {
+            "Authorization": "Basic " + btoa("sagarspkt:7f7426ee-641c-11e8-b8af-f00c404ee570")
         },
         success: function(res) {
-	        console.log(res);
+            console.log(res);
             res = JSON.parse(res);
             if (!res.e) servers = res.d.iceServers;
         },
